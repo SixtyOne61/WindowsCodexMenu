@@ -25,7 +25,11 @@ function Resolve-WorkingDirectory {
 }
 
 $workingDirectory = Resolve-WorkingDirectory -Path $TargetPath
-$codexCommand = Get-Command "codex" -ErrorAction SilentlyContinue
+$codexCommand = Get-Command "codex.cmd" -ErrorAction SilentlyContinue
+
+if ($null -eq $codexCommand) {
+    $codexCommand = Get-Command "codex" -ErrorAction SilentlyContinue
+}
 
 if ($null -eq $codexCommand) {
     Write-Host "Codex introuvable dans le PATH de cette session PowerShell." -ForegroundColor Red
@@ -40,4 +44,4 @@ Write-Host "Lancement de Codex dans :" -ForegroundColor Cyan
 Write-Host $workingDirectory
 Write-Host ""
 
-& $codexCommand.Source
+& $codexCommand.Source --cd $workingDirectory --sandbox workspace-write --ask-for-approval on-request

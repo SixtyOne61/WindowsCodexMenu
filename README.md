@@ -9,6 +9,14 @@ Petit utilitaire Windows qui ajoute une entree **Ouvrir Codex ici** au menu cont
 - Clic droit sur un disque : ouvre PowerShell a la racine du disque et lance `codex`.
 - Clic droit sur un fichier : ouvre PowerShell dans le dossier du fichier et lance `codex`.
 
+Codex est lance explicitement avec :
+
+```powershell
+codex --cd <dossier> --sandbox workspace-write --ask-for-approval on-request
+```
+
+Ce mode lui permet de lire et modifier le dossier ouvert, tout en gardant les protections Codex normales pour les actions plus sensibles.
+
 Les cles sont installees dans `HKCU`, donc l'installation ne demande pas de droits administrateur.
 
 ## Installation
